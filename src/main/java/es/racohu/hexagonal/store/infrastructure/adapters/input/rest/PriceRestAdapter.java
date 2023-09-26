@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.racohu.hexagonal.store.application.port.input.GetPriceUseCase;
+import es.racohu.hexagonal.store.application.usecases.GetPriceUseCase;
 import es.racohu.hexagonal.store.domain.model.Price;
 import es.racohu.hexagonal.store.infrastructure.adapters.input.rest.data.request.PriceQueryRequest;
 import es.racohu.hexagonal.store.infrastructure.adapters.input.rest.data.response.PriceQueryResponse;

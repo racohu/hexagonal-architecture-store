@@ -1,4 +1,4 @@
-package es.racohu.hexagonal.store.application.port.input;
+package es.racohu.hexagonal.store.application.usecases;
 
 import java.time.ZonedDateTime;
 

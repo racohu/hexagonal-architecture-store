@@ -1,4 +1,4 @@
-package es.racohu.hexagonal.store.application.port.output;
+package es.racohu.hexagonal.store.domain.port.output;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
