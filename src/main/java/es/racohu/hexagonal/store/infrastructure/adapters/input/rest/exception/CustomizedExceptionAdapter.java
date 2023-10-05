@@ -1,4 +1,4 @@
-package es.racohu.hexagonal.store.infrastructure.adapters.output.exception;
+package es.racohu.hexagonal.store.infrastructure.adapters.input.rest.exception;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import es.racohu.hexagonal.store.domain.exception.PriceNotFound;
-import es.racohu.hexagonal.store.infrastructure.adapters.output.exception.data.response.ExceptionResponse;
+import es.racohu.hexagonal.store.infrastructure.adapters.input.rest.data.response.ExceptionResponse;
 
 
 @ControllerAdvice

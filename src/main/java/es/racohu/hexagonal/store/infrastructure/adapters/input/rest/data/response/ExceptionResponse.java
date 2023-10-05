@@ -1,4 +1,4 @@
-package es.racohu.hexagonal.store.infrastructure.adapters.output.exception.data.response;
+package es.racohu.hexagonal.store.infrastructure.adapters.input.rest.data.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
