@@ -2,10 +2,10 @@ package es.racohu.hexagonal.store.application.services;
 
 import java.time.ZonedDateTime;
 
+import es.racohu.hexagonal.store.application.port.output.PricePersistence;
 import es.racohu.hexagonal.store.application.usecases.GetPriceUseCase;
 import es.racohu.hexagonal.store.domain.exception.PriceNotFound;
 import es.racohu.hexagonal.store.domain.model.Price;
-import es.racohu.hexagonal.store.domain.port.output.PricePersistence;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

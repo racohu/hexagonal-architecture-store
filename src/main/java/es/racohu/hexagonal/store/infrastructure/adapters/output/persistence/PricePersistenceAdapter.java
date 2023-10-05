@@ -4,8 +4,8 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import es.racohu.hexagonal.store.application.port.output.PricePersistence;
 import es.racohu.hexagonal.store.domain.model.Price;
-import es.racohu.hexagonal.store.domain.port.output.PricePersistence;
 import es.racohu.hexagonal.store.infrastructure.adapters.output.persistence.entity.PriceEntity;
 import es.racohu.hexagonal.store.infrastructure.adapters.output.persistence.mapper.PricePersistenceMapper;
 import es.racohu.hexagonal.store.infrastructure.adapters.output.persistence.repository.PriceRepository;
