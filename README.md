@@ -36,7 +36,6 @@ You can access the API documentation locally at the following URL:
 ![Preview](img/openapi-swagger-ui.PNG)
 
 ## Postman Collection
-
 The [Hexagonal-Store.postman_collection.json](Hexagonal-Store.postman_collection.json) file contains a Postman Collection that allows the following requests to be made:
 
 1. 	**Test 1:** request at 10:00 on the 14th of the day for product 35455 for brand 1 (ZARA).
@@ -45,11 +44,21 @@ The [Hexagonal-Store.postman_collection.json](Hexagonal-Store.postman_collection
 4. 	**Test 4:** request at 10:00 on the 15th of the day of the product 35455 for brand 1 (ZARA).
 5. 	**Test 5:** request at 21:00 of the day 16 of product 35455 for brand 1 (ZARA)
 
+## Contract-First REST API design
+This application has been designed without following a contract-first REST API design. However, an example of how to generate the API interface from the swagger specification is included. 
+
+Run with Maven:
+
+````
+mvn generate-sources
+````
+
 ## TODO
 Possible actions for improvement are listed below:
 
 *	Securize the API
 *	Use of enumerated in the API, e.g. for allowed brands.
-*	Create FK, e.g. with brands
+*	Create FK, e.g. with brands.
 *	Refactor the project so that instead of being a maven project it is a project with three modules (application, domain, infrastructure).
+*	Using Contract-First REST API design.
 

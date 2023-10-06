@@ -61,10 +61,42 @@
 		    <artifactId>springdoc-openapi-ui</artifactId>
 		    <version>1.6.12</version>
 		</dependency>
+		<dependency>
+		    <groupId>io.swagger.codegen.v3</groupId>
+	        <artifactId>swagger-codegen-maven-plugin</artifactId>
+	        <version>3.0.47</version> 
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+	            <groupId>io.swagger.codegen.v3</groupId>
+	            <artifactId>swagger-codegen-maven-plugin</artifactId>
+	            <version>3.0.47</version> 
+	             <executions>
+	                <execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+	                    <configuration>
+	                        <inputSpec>src/main/resources/swagger.json</inputSpec>
+	                        <output>${project.build.directory}/generated-sources/swagger</output>
+	                        <language>spring</language>
+	                        <configOptions>
+								<library>spring-boot</library>
+								<modelPackage>com.swagger.client.codegen.rest.model</modelPackage>
+								<apiPackage>com.swagger.client.codegen.rest.api</apiPackage>
+								<invokerPackage>com.swagger.client.codegen.rest.invoker</invokerPackage>
+								<generateApiTests>false</generateApiTests>
+	                            <sourceFolder>java/main</sourceFolder>
+	                            <interfaceOnly>true</interfaceOnly>
+	                            <dateLibrary>java11</dateLibrary>
+	                        </configOptions>
+	                    </configuration>
+	                </execution>
+	            </executions>
+	        </plugin>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
