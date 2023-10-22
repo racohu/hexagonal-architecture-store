@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,14 +20,14 @@ public class PriceRestAdapterTest {
 
 	@Test
 	void whenThereIsPrice_thenOk() throws Exception {
-		String uri = "/v1/price/search";
+		String uri = "/v1/price";
 
-		String inputJson = "{\"brandId\": 1, \"date\": \"2020-06-14T00:00:00.000+0200\", \"productId\": 35455}";
 		MvcResult mvcResult = mockMvc
 								.perform(MockMvcRequestBuilders
-											.post(uri)
-											.contentType(MediaType.APPLICATION_JSON_VALUE)
-											.content(inputJson))
+											.get(uri)
+											.param("date", "2020-06-14T10:00:00.000+0200")
+											.param("productId", "35455")
+											.param("brandId", "1"))
 								.andReturn();
 
 		int status = mvcResult.getResponse().getStatus();
@@ -39,14 +38,14 @@ public class PriceRestAdapterTest {
 	
 	@Test
 	void whenThereIsNotPrice_thenReturnKo() throws Exception {
-		String uri = "/v1/price/search";
+		String uri = "/v1/price";
 
-		String inputJson = "{\"brandId\": 10, \"date\": \"2020-06-14T00:00:00.000+0200\", \"productId\": 35455}";
 		MvcResult mvcResult = mockMvc
 								.perform(MockMvcRequestBuilders
-											.post(uri)
-											.contentType(MediaType.APPLICATION_JSON_VALUE)
-											.content(inputJson))
+											.get(uri)
+											.param("date", "2020-06-14T10:00:00.000+0200")
+											.param("productId", "35455")
+											.param("brandId", "10"))
 								.andReturn();
 
 		int status = mvcResult.getResponse().getStatus();
@@ -57,20 +56,18 @@ public class PriceRestAdapterTest {
 	
 	@Test
 	void whenValidationFailed_thenReturnKo() throws Exception {
-		String uri = "/v1/price/search";
+		String uri = "/v1/price";
 
-		String inputJson = "{\"brandId\": null, \"date\": null, \"productId\": null}";
 		MvcResult mvcResult = mockMvc
 								.perform(MockMvcRequestBuilders
-											.post(uri)
-											.contentType(MediaType.APPLICATION_JSON_VALUE)
-											.content(inputJson))
+											.get(uri)
+											.param("date", "")
+											.param("productId", "")
+											.param("brandId", ""))
 								.andReturn();
 
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(400, status);
-		String content = mvcResult.getResponse().getContentAsString();
-		assertThat(content).contains("Validation Failed");
 	}
 
 }

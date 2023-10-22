@@ -16,16 +16,14 @@ mvn spring-boot:run
 
 1.	Consult the price/rate of a product for a certain date.
 
-	Method: POST
-	Path: /v1/price/search
-	Input: JSON with the information that composes the filter (date, productId and brandId)
+	Method: GET
+	Path: /v1/price
+	Request Parameters that composes the filter: date, productId and brandId
 
 ````
-{
-    "date": "2020-06-14T10:00:00.000+0200",
-    "productId": 35455,
-    "brandId": 1
-}
+curl -X 'GET' \
+  'http://localhost:8080/v1/price?date=2020-06-14T16%3A00%3A00.000%2B0200&productId=35455&brandId=1' \
+  -H 'accept: */*'
 ````
 
 ## API Documentation

@@ -1,143 +1,146 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Hexagonal Store API",
-    "description": "Information services for the Hexagonal Store",
-    "version": "1.0.0"
-  },
-  "servers": [
-    {
-      "url": "http://localhost:8080",
-      "description": "Generated server url"
-    }
-  ],
-  "paths": {
-    "/v1/price/search": {
-      "post": {
-        "tags": [
-          "Price"
-        ],
-        "summary": "Obtains the price of the product for a date",
-        "operationId": "getPriceByDate",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PriceQueryRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PriceQueryResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExceptionResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExceptionResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "PriceQueryRequest": {
-        "required": [
-          "brandId",
-          "date",
-          "productId"
-        ],
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "productId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "brandId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "ExceptionResponse": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "PriceQueryResponse": {
-        "type": "object",
-        "properties": {
-          "brandId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "priceList": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "productId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "price": {
-            "type": "number",
-            "format": "double"
-          },
-          "currency": {
-            "type": "string"
-          }
-        }
-      }
-    }
-  }
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Hexagonal Store API",
+		"description": "Information services for the Hexagonal Store",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8080",
+			"description": "Generated server url"
+		}
+	],
+	"paths": {
+		"/v1/price": {
+			"get": {
+				"tags": [
+					"Price"
+				],
+				"summary": "Obtains the price of the product for a date",
+				"operationId": "getPriceByDate",
+				"parameters": [
+					{
+						"name": "date",
+						"in": "query",
+						"description": "date to filter the search",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "date-time"
+						},
+						"example": "2020-06-14T16:00:00.000+0200"
+					},
+					{
+						"name": "productId",
+						"in": "query",
+						"description": "product id",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64"
+						},
+						"example": 35455
+					},
+					{
+						"name": "brandId",
+						"in": "query",
+						"description": "brand id",
+						"required": true,
+						"schema": {
+							"type": "integer",
+							"format": "int64"
+						},
+						"example": 1
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"$ref": "#/components/schemas/PriceQueryResponse"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionResponse"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ExceptionResponse"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"ExceptionResponse": {
+				"type": "object",
+				"properties": {
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"message": {
+						"type": "string"
+					},
+					"details": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"PriceQueryResponse": {
+				"type": "object",
+				"properties": {
+					"brandId": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"priceList": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"productId": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					},
+					"currency": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
 }
