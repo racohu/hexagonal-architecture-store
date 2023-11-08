@@ -39,17 +39,4 @@ public class CustomizedExceptionAdapter extends ResponseEntityExceptionHandler {
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
-    @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        List<String> errors = new ArrayList<String>();
-        ex.getBindingResult().getAllErrors().stream().forEach(error -> {
-            errors.add(error.getDefaultMessage());
-        });
-
-        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), "Validation Failed", errors);
-
-        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
-    }
-
 }
